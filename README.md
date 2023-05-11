@@ -13,7 +13,7 @@ Schedule future casts on Farcaster
 <!-- Badge row 2 - links and profiles -->
 
 [![Website wbnns.com](https://img.shields.io/website-up-down-green-red/https/wbnns.com.svg)](https://wbnns.com/)
-[![Log](https://img.shields.io/badge/blog-up-green)](https://log.wbnns.com//)
+[![Log](https://img.shields.io/badge/blog-up-green)](https://log.wbnns.com/)
 [![Twitter wbnns](https://img.shields.io/twitter/follow/wbnns?style=social)](https://twitter.com/wbnns)
 
 <!-- Badge row 3 - detailed status -->
