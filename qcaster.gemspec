@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["hello@wbnns.com"]
 
   spec.summary       = %q{Schedule future casts on Farcaster}
-  spec.description   = %q{Stop bothering everyone with your top of mind rants. Schedule them for the future.}
+  spec.description   = %q{qCaster lets you set your casts to go out later so you can focus on other things.}
   spec.homepage      = "https://github.com/wbnns/qcaster"
   spec.license       = "MIT"
 
