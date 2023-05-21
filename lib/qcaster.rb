@@ -1,3 +1,4 @@
+require 'qcaster/version'
 require 'dotenv'
 require 'rest-client'
 require 'rufus-scheduler'
