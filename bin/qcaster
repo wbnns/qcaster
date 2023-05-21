@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/qcaster.rb'
+
+qcaster = QCaster.new
+qcaster.start
+

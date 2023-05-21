@@ -21,3 +21,13 @@ Schedule future casts on Farcaster
 [![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/wbnns/qcaster)](https://github.com/wbnns/qcaster/pulls)
 [![GitHub Issues](https://img.shields.io/github/issues-raw/wbnns/qcaster.svg)](https://github.com/wbnns/qcaster/issues)
 
+## Description
+
+qCaster is a command-line based Ruby gem that integrates with Warpcast. It reads a file that contains a Cast on each line and processes the Casts every 72 minutes. In addition, it Casts 'Gm' at 9:30 AM and 'Gn' at midnight.
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'qcaster'
