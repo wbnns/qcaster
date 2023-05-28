@@ -56,7 +56,7 @@ tweet_posted = False
 while True:
     try:
         # Open the file and read the tweet
-        with open('wbnns.txt', 'r') as file:
+        with open('queue.txt', 'r') as file:
             lines = file.readlines()
 
         if lines:
