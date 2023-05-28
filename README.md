@@ -37,44 +37,6 @@ This application uses the Tweepy and Requests libraries to interact with the Twi
 
 1. Clone this repository:
 ```
-The README.md is a crucial file in any project and typically contains the following sections:
-
-    Project Title: A descriptive title for your project.
-
-    Description: A brief explanation of what the project does.
-
-    Getting Started/Installation: A step-by-step guide on how to set up the project locally. This could include steps to clone the repository, installing dependencies, setting up the database, and any other steps required to get the project running.
-
-    Usage: Some examples of how to use the project. For a web application, this might be instructions on how to run the server and access it in a browser.
-
-    Contributing: Guidelines for people who want to contribute to your project.
-
-    License: The license your project uses.
-
-Here's a sample README.md for your Flask application:
-
-markdown
-
-# Twitter-Farcaster Tweet Scheduler
-
-This is a Flask application that allows scheduling of tweets and farcaster posts.
-
-## Description
-
-This application uses the Tweepy and Requests libraries to interact with the Twitter and Farcaster APIs, respectively. It also includes a simple Bootstrap frontend interface for managing scheduled tweets.
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.8+
-- pip
-- SQLite
-
-### Installation
-
-1. Clone this repository:
-```
 git clone https://github.com/wbnns/qcaster.git
 cd qcaster
 ```
