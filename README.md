@@ -23,11 +23,81 @@ Schedule future casts on Farcaster
 
 ## Description
 
-qCaster is a command-line based Ruby gem that integrates with Warpcast. It reads a file that contains a Cast on each line and processes the Casts every 72 minutes. In addition, it Casts 'Gm' at 9:30 AM and 'Gn' at midnight.
+This application uses the Tweepy and Requests libraries to interact with the Twitter and Farcaster APIs, respectively. It also includes a simple Bootstrap frontend interface for managing scheduled tweets.
 
-## Installation
+## Getting Started
 
-Add this line to your application's Gemfile:
+### Prerequisites
 
-```ruby
-gem 'qcaster'
+- Python 3.8+
+- pip
+- SQLite
+
+### Installation
+
+1. Clone this repository:
+```
+The README.md is a crucial file in any project and typically contains the following sections:
+
+    Project Title: A descriptive title for your project.
+
+    Description: A brief explanation of what the project does.
+
+    Getting Started/Installation: A step-by-step guide on how to set up the project locally. This could include steps to clone the repository, installing dependencies, setting up the database, and any other steps required to get the project running.
+
+    Usage: Some examples of how to use the project. For a web application, this might be instructions on how to run the server and access it in a browser.
+
+    Contributing: Guidelines for people who want to contribute to your project.
+
+    License: The license your project uses.
+
+Here's a sample README.md for your Flask application:
+
+markdown
+
+# Twitter-Farcaster Tweet Scheduler
+
+This is a Flask application that allows scheduling of tweets and farcaster posts.
+
+## Description
+
+This application uses the Tweepy and Requests libraries to interact with the Twitter and Farcaster APIs, respectively. It also includes a simple Bootstrap frontend interface for managing scheduled tweets.
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.8+
+- pip
+- SQLite
+
+### Installation
+
+1. Clone this repository:
+```
+git clone https://github.com/wbnns/qcaster.git
+cd qcaster
+```
+2. Install dependencies:
+```
+pip install -r requirements.txt
+```
+3. Copy the `.env.example` file to `.env` and update the variables with your credentials:
+```
+cp .env.example .env
+```
+4. Run the application:
+```
+flask run
+```
+## Usage
+
+Once the application is running, you can access the interface at http://localhost:5000. From there, you can add, update, and delete scheduled tweets.
+
+## Contributing
+
+Pull requests are welcome. Please make sure to update tests as appropriate.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

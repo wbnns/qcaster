@@ -1,4 +1,42 @@
-.env
-*.gem
-*.rbc
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Flask
+instance/
+
+# SQLite
+*.sqlite
+
+# Logs
 *.log
+
+# Environment variables
+.env
+
+# Migration directories
+migrations/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
