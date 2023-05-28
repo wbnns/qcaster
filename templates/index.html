@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Add new tweet:</h2>
+    <form method="POST" action="{{ url_for('add') }}">
+        <input type="text" name="text" required>
+        <button type="submit">Add</button>
+    </form>
+    <h2>Queue:</h2>
+    {% for tweet in tweets %}
+        <div>
+            <p>{{ tweet.text }}</p>
+            <a href="{{ url_for('edit', id=tweet.id) }}">Edit</a>
+            <a href="{{ url_for('delete', id=tweet.id) }}">Delete</a>
+            <a href="{{ url_for('post', id=tweet.id) }}">Post Now</a>
+        </div>
+    {% endfor %}
+</body>
+</html>
+
