@@ -30,7 +30,7 @@ joblib==1.2.0
 jsonschema==4.17.0
 livereload==2.6.3
 MarkupSafe==2.1.1
-numpy==1.19.5
+numpy==1.22.0
 nvidia-cublas-cu11==11.10.3.66
 nvidia-cuda-nvrtc-cu11==11.7.99
 nvidia-cuda-runtime-cu11==11.7.99
