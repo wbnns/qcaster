@@ -1,7 +1,5 @@
 # qCaster
 
-Schedule future casts on Farcaster
-
 <!-- Badge row 1 - status -->
 
 [![GitHub contributors](https://img.shields.io/github/contributors/wbnns/qcaster)](https://github.com/wbnns/qcaster/graphs/contributors)
@@ -48,10 +46,21 @@ pip install -r requirements.txt
 ```
 cp .env.example .env
 ```
-4. Run the application:
+4. Set up the database:
+```
+flask db init
+flask db migrate
+flask db upgrade
+```
+5. Start the application
 ```
 flask run
 ```
+6. Start the scheduler
+```
+flask run_scheduler
+```
+
 ## Usage
 
 Once the application is running, you can access the interface at http://localhost:5000. From there, you can add, update, and delete scheduled tweets.
