@@ -62,11 +62,11 @@ def add():
 
     # Calculate the scheduled time for the new tweet
     if latest_tweet:
-        min_scheduled_time = latest_tweet.scheduled_time + timedelta(minutes=30)
+        min_scheduled_time = latest_tweet.scheduled_time + timedelta(minutes=5)
     else:
         min_scheduled_time = now
 
-    max_scheduled_time = min_scheduled_time + timedelta(minutes=30)
+    max_scheduled_time = min_scheduled_time + timedelta(minutes=5)
     scheduled_time = random_datetime(min_scheduled_time, max_scheduled_time)
 
     tweet = Tweet(text=text, scheduled_time=scheduled_time)
@@ -128,7 +128,7 @@ def run_scheduler_command():
         with app.app_context():
             while True:
                 now = datetime.utcnow()
-                tweet = Tweet.query.filter(Tweet.scheduled_time <= now).first()
+                tweet = Tweet.query.filter(Tweet.scheduled_time <= now + timedelta(minutes=6)).first()
                 if tweet:
                     job(tweet.text)
                     db.session.delete(tweet)
@@ -140,4 +140,3 @@ def run_scheduler_command():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
