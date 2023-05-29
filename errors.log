@@ -39,3 +39,52 @@ INFO:werkzeug:127.0.0.1 - - [28/May/2023 23:46:02] "[32mPOST /add HTTP/1.1[0m"
 INFO:werkzeug:127.0.0.1 - - [28/May/2023 23:46:02] "GET / HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [28/May/2023 23:46:13] "[32mGET /post/2 HTTP/1.1[0m" 302 -
 INFO:werkzeug:127.0.0.1 - - [28/May/2023 23:46:13] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with watchdog (inotify)
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 656-550-018
+INFO:werkzeug:127.0.0.1 - - [28/May/2023 23:52:36] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2023 23:52:46] "[32mPOST /add HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [28/May/2023 23:52:46] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [28/May/2023 23:58:25] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:00:41] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:00:45] "[32mPOST /add HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:00:45] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:02:01] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:02:05] "[32mGET /delete/4 HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:02:05] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:02:06] "[32mGET /delete/3 HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:02:06] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:02:09] "[32mPOST /add HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:02:09] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:08:39] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:08:39] "[33mGET /wbnns.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:08:44] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:08:44] "[33mGET /wbnns.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:08:44] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:10:55] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:12:38] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:12:53] "[32mPOST /add HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:12:53] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:12:57] "[32mPOST /add HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:12:57] "GET / HTTP/1.1" 200 -
