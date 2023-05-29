@@ -128,7 +128,7 @@ def run_scheduler_command():
         with app.app_context():
             while True:
                 now = datetime.utcnow()
-                tweet = Tweet.query.filter(Tweet.scheduled_time <= now + timedelta(minutes=6)).first()
+                tweet = Tweet.query.filter(Tweet.scheduled_time <= now + timedelta(minutes=2)).first()
                 if tweet:
                     job(tweet.text)
                     db.session.delete(tweet)
