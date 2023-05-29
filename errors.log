@@ -88,3 +88,87 @@ INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:12:53] "[32mPOST /add HTTP/1.1[0m"
 INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:12:53] "GET / HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:12:57] "[32mPOST /add HTTP/1.1[0m" 302 -
 INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:12:57] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:28:02] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:28:04] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 00:28:04] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:app:Exception on / [GET]
+Traceback (most recent call last):
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1968, in _exec_single_context
+    self.dialect.do_execute(
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 920, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: tweet.scheduled_minute
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/var/home/wbnns/git/personal/qcaster/app.py", line 81, in home
+    tweets = Tweet.query.order_by(Tweet.id.asc()).all()
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2692, in all
+    return self._iter().all()  # type: ignore
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2846, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2232, in execute
+    return self._execute_internal(
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2127, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1413, in execute
+    return meth(
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 483, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1987, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2344, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1968, in _exec_single_context
+    self.dialect.do_execute(
+  File "/var/home/wbnns/.pyenv/versions/3.8.15/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 920, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: tweet.scheduled_minute
+[SQL: SELECT tweet.id AS tweet_id, tweet.text AS tweet_text, tweet.scheduled_minute AS tweet_scheduled_minute 
+FROM tweet ORDER BY tweet.id ASC]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 09:41:21] "[35m[1mGET / HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 09:41:21] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 10:37:05] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 10:37:09] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 10:37:52] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 10:37:53] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 10:37:54] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 10:38:34] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [29/May/2023 10:38:59] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m

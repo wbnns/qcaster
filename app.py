@@ -1,14 +1,20 @@
-from flask import Flask, request, render_template, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
-from apscheduler.schedulers.background import BackgroundScheduler
 import os
+import random
+import threading
+import time
+from datetime import datetime, timedelta
+
+from flask import Flask, redirect, render_template, request, url_for
+from flask_sqlalchemy import SQLAlchemy
 import tweepy
 import requests
 import json
-import logging
-
-# Load environment variables
 from dotenv import load_dotenv
+import click
+from flask.cli import with_appcontext
+from flask_migrate import Migrate
+
+# Load environment variables from the .env file
 load_dotenv()
 
 # Get keys from environment variables
@@ -19,35 +25,38 @@ access_token = os.getenv("TWITTER_ACCESS_TOKEN")
 access_token_secret = os.getenv("TWITTER_ACCESS_TOKEN_SECRET")
 farcaster_auth_header = os.getenv("FARCASTER_AUTHORIZATION_HEADER")
 
-# Create a logger
-logging.basicConfig(filename='errors.log', level=logging.ERROR)
-
-# Authenticate as a user
-client = tweepy.Client(
-    consumer_key=consumer_key, consumer_secret=consumer_secret,
-    access_token=access_token, access_token_secret=access_token_secret
-)
-
-# Flask App
+# Initialize Flask
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tweets.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Initialize SQLAlchemy
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+# Authenticate as a user
+client = tweepy.Client(
+    consumer_key=consumer_key,
+    consumer_secret=consumer_secret,
+    access_token=access_token,
+    access_token_secret=access_token_secret,
+)
 
 class Tweet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(280), nullable=False)
-    posted = db.Column(db.Boolean, default=False)
+    scheduled_time = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
 
 @app.route('/')
 def home():
-    tweets = Tweet.query.filter_by(posted=False).all()
+    tweets = Tweet.query.order_by(Tweet.scheduled_time).all()
     return render_template('index.html', tweets=tweets)
 
 @app.route('/add', methods=['POST'])
 def add():
     text = request.form.get('text')
-    tweet = Tweet(text=text)
+    scheduled_time = datetime.utcnow() + timedelta(hours=random.randint(1, 24))
+    tweet = Tweet(text=text, scheduled_time=scheduled_time)
     db.session.add(tweet)
     db.session.commit()
     return redirect(url_for('home'))
@@ -55,9 +64,8 @@ def add():
 @app.route('/delete/<int:id>')
 def delete(id):
     tweet = Tweet.query.get(id)
-    if tweet:
-        db.session.delete(tweet)
-        db.session.commit()
+    db.session.delete(tweet)
+    db.session.commit()
     return redirect(url_for('home'))
 
 @app.route('/edit/<int:id>', methods=['GET', 'POST'])
@@ -69,54 +77,47 @@ def edit(id):
         return redirect(url_for('home'))
     return render_template('edit.html', tweet=tweet)
 
-@app.route('/post/<int:id>')
-def post(id):
+@app.route('/post_now/<int:id>')
+def post_now(id):
     tweet = Tweet.query.get(id)
-    if tweet:
-        job(tweet.text, tweet.id)
-        tweet.posted = True
-        db.session.commit()
+    job(tweet.text)
+    db.session.delete(tweet)
+    db.session.commit()
     return redirect(url_for('home'))
 
-def job(text=None, tweet_id=None):
-    try:
-        if text is None and tweet_id is None:
-            # If no parameters were given, get the oldest unposted tweet
-            tweet = Tweet.query.filter_by(posted=False).first()
-            if tweet is not None:
-                text = tweet.text
-                tweet_id = tweet.id
+def job(text):
+    # Create a tweet
+    response = client.create_tweet(text=text)
+    print(f"https://twitter.com/user/status/{response.data['id']}")
 
-        if text is not None:
-            # Create a tweet
-            response = client.create_tweet(text=text)
-            print(f"https://twitter.com/user/status/{response.data['id']}")
+    # Post to Farcaster
+    farcaster_response = requests.post(
+        'https://api.warpcast.com/v2/casts',
+        headers={
+            'Authorization': farcaster_auth_header,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        data=json.dumps({'text': text})
+    )
+    print(f"Farcaster post response status: {farcaster_response.status_code}")
 
-            # Post to Farcaster
-            farcaster_response = requests.post(
-                'https://api.warpcast.com/v2/casts',
-                headers={
-                    'Authorization': farcaster_auth_header,
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                data=json.dumps({'text': text})
-            )
-            print(f"Farcaster post response status: {farcaster_response.status_code}")
+@app.cli.command('run_scheduler')
+@with_appcontext
+def run_scheduler_command():
+    def run_scheduler():
+        with app.app_context():
+            while True:
+                now = datetime.utcnow()
+                tweet = Tweet.query.filter(Tweet.scheduled_time <= now).first()
+                if tweet:
+                    job(tweet.text)
+                    db.session.delete(tweet)
+                    db.session.commit()
+                time.sleep(60)
 
-            if tweet_id is not None:
-                # If a tweet id was given, mark the tweet as posted
-                tweet = Tweet.query.get(tweet_id)
-                tweet.posted = True
-                db.session.commit()
-
-    except Exception as e:
-        logging.error(f"Error occurred: {e}")
-
-# Schedule job for 9AM and 12AM
-scheduler = BackgroundScheduler()
-scheduler.add_job(job, 'cron', hour='9,0')
-scheduler.start()
+    scheduler_thread = threading.Thread(target=run_scheduler)
+    scheduler_thread.start()
 
 if __name__ == '__main__':
     app.run(debug=True)

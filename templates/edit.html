@@ -1,24 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-    <title>Edit Post</title>
-</head>
-<body class="dark bg-gray-800">
-    <div class="container mx-auto p-4">
-        <h1 class="text-4xl mb-4 text-white">Edit Post</h1>
+{% extends 'base.html' %}
 
-        <form method="POST" class="mb-4">
-            <div class="flex items-center">
-                <input type="text" name="text" required class="flex-grow border-2 border-blue-300 dark:border-blue-600 p-2 mr-2 rounded dark:bg-gray-700 text-black dark:text-white" value="{{ tweet.text }}">
-                <button type="submit" class="bg-blue-500 dark:bg-blue-700 text-white px-4 py-2 rounded">Save</button>
-            </div>
-        </form>
+{% block content %}
+  <h1 class="text-4xl font-bold mb-6">Edit Tweet</h1>
 
-        <div>
-            <a href="/" class="text-blue-500 dark:text-blue-400">Back</a>
-        </div>
+  <form action="{{ url_for('edit', id=tweet.id) }}" method="POST">
+    <div class="mb-4">
+      <textarea name="text" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none" placeholder="Enter tweet text" required>{{ tweet.text }}</textarea>
     </div>
-</body>
-</html>
+    <button type="submit" class="py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-lg">Save Changes</button>
+  </form>
+{% endblock %}
 
