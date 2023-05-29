@@ -54,12 +54,31 @@ def home():
 
 @app.route('/add', methods=['POST'])
 def add():
-    text = request.form.get('text')
-    scheduled_time = datetime.utcnow() + timedelta(hours=random.randint(1, 24))
+    text = request.form['text']
+    now = datetime.utcnow()
+
+    # Get the latest scheduled time from the database
+    latest_tweet = Tweet.query.order_by(Tweet.scheduled_time.desc()).first()
+
+    # Calculate the scheduled time for the new tweet
+    if latest_tweet:
+        min_scheduled_time = latest_tweet.scheduled_time + timedelta(minutes=30)
+    else:
+        min_scheduled_time = now
+
+    max_scheduled_time = min_scheduled_time + timedelta(minutes=30)
+    scheduled_time = random_datetime(min_scheduled_time, max_scheduled_time)
+
     tweet = Tweet(text=text, scheduled_time=scheduled_time)
     db.session.add(tweet)
     db.session.commit()
     return redirect(url_for('home'))
+
+# Helper function to generate a random datetime within a given range
+def random_datetime(start, end):
+    delta = end - start
+    random_seconds = random.randrange(int(delta.total_seconds()))
+    return start + timedelta(seconds=random_seconds)
 
 @app.route('/delete/<int:id>')
 def delete(id):
