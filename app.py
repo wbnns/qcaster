@@ -64,9 +64,9 @@ def add():
     if latest_tweet:
         min_scheduled_time = latest_tweet.scheduled_time + timedelta(minutes=24)
     else:
-        min_scheduled_time = now
+        min_scheduled_time = now + timedelta(minutes=36)  # change is here
 
-    max_scheduled_time = min_scheduled_time + timedelta(minutes=24)
+    max_scheduled_time = min_scheduled_time + timedelta(minutes=36)
     scheduled_time = random_datetime(min_scheduled_time, max_scheduled_time)
 
     tweet = Tweet(text=text, scheduled_time=scheduled_time)
