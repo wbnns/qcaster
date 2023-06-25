@@ -62,11 +62,11 @@ def add():
 
     # Calculate the scheduled time for the new tweet
     if latest_tweet:
-        min_scheduled_time = latest_tweet.scheduled_time + timedelta(minutes=24)
+        min_scheduled_time = latest_tweet.scheduled_time + timedelta(minutes=12)
     else:
         min_scheduled_time = now + timedelta(minutes=12)
 
-    max_scheduled_time = min_scheduled_time + timedelta(minutes=24)
+    max_scheduled_time = min_scheduled_time + timedelta(minutes=12)
     scheduled_time = random_datetime(min_scheduled_time, max_scheduled_time)
 
     tweet = Tweet(text=text, scheduled_time=scheduled_time)
