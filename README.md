@@ -21,7 +21,7 @@
 
 ## Description
 
-This application uses the Tweepy and Requests libraries to interact with the Twitter and Farcaster APIs, respectively. It also includes a simple Bootstrap frontend interface for managing scheduled tweets.
+This application uses the Tweepy and Requests libraries to interact with the Twitter/X and Farcaster APIs, respectively. It also includes a simple Bootstrap frontend interface for managing scheduled tweets.
 
 ## Getting Started
 
@@ -71,4 +71,4 @@ Pull requests are welcome. Please make sure to update tests as appropriate.
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](LICENSE)
