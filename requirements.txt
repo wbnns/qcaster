@@ -4,6 +4,6 @@ Flask==2.3.2
 Flask_Migrate==4.0.4
 flask_sqlalchemy==3.0.3
 python-dotenv==1.0.0
-Requests==2.31.0
+Requests==2.32.0
 SQLAlchemy==2.0.15
 tweepy==4.14.0
