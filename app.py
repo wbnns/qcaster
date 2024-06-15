@@ -121,20 +121,26 @@ def job(text):
     )
     print(f"Farcaster post response status: {farcaster_response.status_code}")
 
-@app.cli.command('run_scheduler')
-@with_appcontext
-def run_scheduler_command():
-    def run_scheduler():
+def run_scheduler():
+    while True:
         with app.app_context():
-            while True:
+            try:
                 now = datetime.utcnow()
                 tweet = Tweet.query.filter(Tweet.scheduled_time <= now + timedelta(minutes=3)).first()
                 if tweet:
                     job(tweet.text)
                     db.session.delete(tweet)
                     db.session.commit()
-                time.sleep(60)
+            except Exception as e:
+                app.logger.exception("Error in scheduler: %s", str(e))
+                db.session.rollback()
+            finally:
+                db.session.remove()  # Remove the database session to release the connection
 
+        time.sleep(60)
+
+@app.cli.command('run_scheduler')
+def run_scheduler_command():
     scheduler_thread = threading.Thread(target=run_scheduler)
     scheduler_thread.start()
 
